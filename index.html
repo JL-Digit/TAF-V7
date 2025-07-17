@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>TO DO - Gestionnaire de tâches</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loginScreen" class="screen">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1>Connexion</h1>
+                    <p>TO DO - Gestionnaire de tâches</p>
+                </div>
+                <div class="login-content">
+                    <div id="loginError" class="error-message" style="display: none;"></div>
+                    <div id="loginSuccess" class="success-message" style="display: none;"></div>
+                    
+                    <div id="loginForm">
+                        <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" class="input-field">
+                        <input type="password" id="loginPassword" placeholder="Mot de passe" class="input-field">
+                        <button id="loginBtn" class="btn btn-primary">Se connecter</button>
+                        <button id="showRegisterBtn" class="btn btn-secondary">Créer un compte</button>
+                    </div>
+                    
+                    <div id="registerForm" style="display: none;">
+                        <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" class="input-field">
+                        <input type="password" id="registerPassword" placeholder="Mot de passe" class="input-field">
+                        <button id="registerBtn" class="btn btn-primary">Créer le compte</button>
+                        <button id="showLoginBtn" class="btn btn-secondary">Déjà un compte ? Se connecter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="appScreen" class="screen" style="display: none;">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="app-logo">
+                        <img src="logo.jpg" alt="TO DO App Logo" class="logo-icon">
+                        <h1>TO DO</h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-icon">👤</span>
+                        <span id="currentUsername" class="username"></span>
+                    </div>
+                    <button id="syncBtn" class="btn btn-outline">
+                        <span class="sync-icon">🔄</span>
+                        Sync
+                    </button>
+                    <button id="logoutBtn" class="btn btn-outline">
+                        <span class="logout-icon">🚪</span>
+                        Déconnexion
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div id="appError" class="error-message" style="display: none;"></div>
+            <div id="appSuccess" class="success-message" style="display: none;"></div>
+
+            <div class="add-task-card">
+                <div class="card-header">
+                    <h2>➕ Ajouter une nouvelle tâche</h2>
+                </div>
+                <div class="card-content">
+                    <input type="text" id="newTaskText" placeholder="Entrez votre tâche..." class="input-field">
+                    <div class="task-form-row">
+                        <input type="date" id="newTaskDate" class="input-field date-input">
+                        <button id="addTaskBtn" class="btn btn-primary">
+                            ➕ Ajouter
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tasks-container">
+                <div id="emptyState" class="empty-state">
+                    <p>Aucune tâche pour le moment. Ajoutez-en une !</p>
+                </div>
+                <div id="tasksList" class="tasks-list"></div>
+            </div>
+
+            <div id="statsCard" class="stats-card" style="display: none;">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalTasks">0</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="completedTasks">0</div>
+                        <div class="stat-label">Terminées</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="urgentTasks">0</div>
+                        <div class="stat-label">Urgentes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="overdueTasks">0</div>
+                        <div class="stat-label">En retard</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
